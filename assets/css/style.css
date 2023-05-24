@@ -1,0 +1,38 @@
+*{
+    padding:0px;
+    margin:0px;
+    box-sizing: border-box;
+    
+}
+.bg{
+    background-color: #685155;
+}
+
+.cartao{
+    margin: auto ;
+    padding:20px;
+    width: 40%;
+    height: 40%;
+    background-color: #7a6f9b;
+    border: 1px solid black;
+    border-radius: 30px;
+}
+
+.cartao:hover{
+    width: 50%;
+    height:50%;
+    background-color: #8b85c1;
+}
+
+.btnTeste{
+    width: 60px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #d4cdf4;
+    color:black;
+}
+
+.btnTeste:hover{
+    background-color: #815E5B;
+    color: white;
+}
