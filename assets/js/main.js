@@ -1,7 +1,16 @@
 const mostrarMais = document.getElementById("mostrarMais")
 const pokemonList = document.getElementById('pokemonList')
-const limit = 5
+const limit = 15
 let offset = 0
+
+const cardPokemon= document.getElementById("cardPokemon")
+const nomePokemon= document.getElementById("nomePoke")
+const numPokemon= document.getElementById("numPoke")
+const alturaPokemon = document.getElementById("alturaPoke")
+const pesoPokemon = document.getElementById("pesoPoke")
+
+const listaTipos = document.getElementById("listaTipos")
+
 
 const maxRecords = 151
 
@@ -9,7 +18,7 @@ function loadPokemonItens(offset, limit) {
 
     function convertPokemonToLi(pokemon) {
         return `
-        <li class="pokemon ${pokemon.mainType}">
+        <li class="pokemon ${pokemon.mainType}" id="${pokemon.name}" onclick=abrirPoke(${pokemon.name})>
                     <span class="number">#${pokemon.number}</span>
                     <span class="name">${pokemon.name}</span>
                     
@@ -19,8 +28,12 @@ function loadPokemonItens(offset, limit) {
                         </ol>
                         <img src="${pokemon.photo}" 
                             alt="${pokemon.name}">
+                        
                     </div> 
-                    <img src="assets/icon/${pokemon.mainType}.png" alt="" class="icon_type">
+                    <div class="iconsTypes">
+                        ${pokemon.types.map((type) => `<img src="assets/icon/${type}.png" alt="" class="icon_type">`).join('')}
+                    </div>
+                    
         </li>
         `
     }
@@ -46,10 +59,85 @@ mostrarMais.addEventListener("click", () => {
         loadPokemonItens(offset, limit)
     }
 
-
-
 })
 
+
+const fecharDetalhes= document.getElementById("fecharDetalhes")
+
+fecharDetalhes.addEventListener("click", () => {
+    cardPokemon.style.display="none"
+    imagePoke.innerHTML = ''
+    cardPokemon.classList=''
+    cardPokemon.classList.add("cardPokemon")
+    listaTipos.innerHTML =''
+})
+
+function abrirPoke(poke){
+
+    const imagem = document.createElement("img")
+    const imagemTipo =document.createElement("img")
+    cardPokemon.style.display="flex"
+    let idPokemon=0
+
+
+    fetch(`https://pokeapi.co/api/v2/pokemon/${poke.id}`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/vnd.github.v3+json',
+        },
+    }).then((response) => {
+        return response.json()
+    }).then((pokemon) => {
+        let tiposPoke = []
+
+
+        
+        imagem.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon//other/official-artwork/${pokemon.id}.png`
+
+        console.log(pokemon.id.toString().length)
+        if(pokemon.id.toString().length<2){
+            idPokemon = "#00"+pokemon.id.toString()
+        }
+        else if(pokemon.id.toString().length<3){
+            idPokemon = "#0"+pokemon.id.toString()
+        }
+        else{
+            idPokemon = "#"+pokemon.id.toString()
+        }
+        nomePokemon.innerText = pokemon.name
+        numPokemon.innerText = idPokemon
+        pesoPokemon.innerText = pokemon.weight /10 +" kg"
+        alturaPokemon.innerText = pokemon.height /10+" m"
+
+        const mainType= pokemon.types[0].type.name
+        cardPokemon.classList.add(mainType)
+        imagePoke.appendChild(imagem)
+        
+
+        let tipos = pokemon.types
+        console.log(tipos.length)
+
+
+        //pokemon.types.map((type) => console.log(type.name))
+
+        for (i = 0; i < tipos.length; i++) {
+            tiposPoke[i] = pokemon.types[i].type.name
+            imagemTipo.src =`assets/icon/${tiposPoke[i]}.png`
+            //listaTipos = listaTipos.appendChild(pokemon.types[i].type.name)
+            //listaTipos = listaTipos + listaTipos.appendChild(imagemTipo)
+            //pokemon.types.map((type) => `<img src="assets/icon/${type}.png" alt="" class="icon_type">`).join('')
+            //console.log(tiposPoke[i])
+        }
+
+        
+        //pokemon.types.map((console.log(type)))
+        
+
+    })
+
+
+    
+}
 
 
 

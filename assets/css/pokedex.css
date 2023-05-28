@@ -15,6 +15,7 @@
     background-color: #49D0B0;
     border-radius: 1rem;
     color: #fff;
+    overflow:hidden;
 }
 
 .pokemon .number{
@@ -91,7 +92,6 @@
     display:flex;
     flex-direction: row;
     justify-content: center;
-    
 }
 
 .btnMostrarMais{
@@ -106,6 +106,16 @@
 .btnMostrarMais:hover{
     filter:brightness(1.1);
     transform: scale(1.1);
+}
+
+.iconTypes{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+}
+
+.icon_type{
+    margin-left: 5px;
 }
 
 .normal{background-color: #A8A77A;}
@@ -126,3 +136,127 @@
 .dark{background-color: #705746;} 
 .steel{background-color: #B7B7CE;} 
 .fairy{background-color: #D685AD;} 
+
+
+.content{
+    position: absolute;
+    margin:0% 10%;
+    width: 80%;
+    height: auto; 
+}
+
+
+
+.cardPokemon{
+    position: absolute;
+    z-index: 3;
+    margin:50px 25%;
+    width: 50%;
+    height: 400px;
+    display:none;
+    border-radius: 30px;
+    flex-direction: column;
+    bottom: 300px;
+}
+
+
+
+.cardPokemon .tituloPoke{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    border-radius: 30px 30px 0px 0px ;
+}
+
+.cardPokemon .tituloPoke .nomePoke{
+    margin:auto;
+    font-size: 2rem;
+    color: linen;
+    text-transform: capitalize;
+    text-align: left;
+    padding-left: 30px;
+    padding-top: 10px;
+    width: 100%;
+}
+
+.cardPokemon .fechar{
+    background-color: rgba(240, 248, 255, 0);
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    right:0px;
+    padding:0;
+    border:none;
+}
+
+.cardPokemon .fechar > img{
+    width: 50px;
+    height: 50px;
+    background-color: linen;
+    border-radius: 100%;
+}
+
+.imagePoke{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.imagePoke > img{
+    position: absolute;
+    margin-top:0px;
+    width: 200px;
+    height: 200px;
+    z-index: 7;
+}
+
+.infoPokemon{
+    display: flex;
+    flex-direction: row;
+    background-color: #ececec;
+    border-radius: 30px;
+    padding: 20px 0px 0px 30px;
+    height: 100%;
+    z-index: 5;
+    margin-top: 175px;
+    justify-content:left;
+}
+
+.infoPokemon .infoLeft, .infoRight{
+    display:flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+
+
+.infoPokemon .infoPokemonText, .tituloInfo{
+   font-size: 1rem;
+   margin-bottom: 0.5rem;
+   margin-right: 50px;
+}
+
+
+.tituloInfo{
+    filter: contrast(0.5);
+}
+
+
+
+.fundo{
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.fundo > img{
+    position: absolute;
+    width: 250px;
+    z-index: -2;
+    margin-top: 0px;
+    right: -30px;
+    filter: opacity(0.3);
+    transform: rotate(-15deg);
+}
